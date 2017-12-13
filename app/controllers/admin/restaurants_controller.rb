@@ -41,7 +41,7 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 private  
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :descrition, :image) 
+    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :descrition, :image, :category_id ) 
   end  
 
   def set_restaurant

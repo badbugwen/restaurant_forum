@@ -17,7 +17,8 @@
         <%= f.label :name, "Name" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
-
+      <%= f.label :category_id, "Category" %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
       <div class="form_group">
         <%= f.label :tel, "tel" %>
         <%= f.text_field :tel, class: "form-control" %>
