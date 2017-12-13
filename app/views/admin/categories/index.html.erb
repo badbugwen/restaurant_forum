@@ -1,0 +1,41 @@
+<div class="container">
+  <br><br>
+  <div>
+    <%= link_to 'Restaurant', admin_restaurants_path %> |
+    <%= link_to 'Categories', admin_categories_path %>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover"> 
+        <h3 class="card-heading text-center">餐廳種類一覽表</h3>
+            <thead>              
+                <tr class="bg-primary">
+                  <th class="col-md-3 text-center">#</th> 
+                  <td class="col-md-6">餐廳種類名稱</td>           
+                  <td class="col-md-1 text-center">刪除</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @categories.each do |category| %>
+                  <tr>
+                    <th scope="row" class="col-md-3"><%= category.id %></th>
+                    <div class="col-md-6">
+                      <td><%= category.name %></td>
+                    </div> 
+                    <div class="col-md-1">
+                      <td><%= link_to admin_category_path(category), method: :delete, data:{ confirm: "確定刪除此類別?" } do %>
+                        <h4 class="text-center">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </h4>
+                        <% end %>
+                      </td>
+                    </div>
+                  </tr>
+                <% end %>
+            </tbody>
+      </table>
+    </div>
+  </div>    
+</div>      

@@ -1,12 +1,17 @@
 <div class="container">
+  <br><br>
+  <div>
+    <%= link_to 'Restaurant', admin_restaurants_path %> |
+    <%= link_to 'Categories', admin_categories_path %>
+  </div>
   <div class="row">
     <div class="col-md-12">
-    <button type="button" class="btn btn-warning rounded pull-right" >
-          <%= link_to new_admin_restaurant_path do %>
-            <span class="glyphicon glyphicon-plus">New Restaurant</span>
-          <% end %>
-        </button>  
-        <br><br><br>
+      <button type="button" class="btn btn-warning rounded pull-right" >
+        <%= link_to new_admin_restaurant_path do %>
+          <span class="glyphicon glyphicon-plus">New Restaurant</span>
+        <% end %>
+      </button>  
+      <br>
       <table class="table table-hover"> 
         <h3 class="card-heading text-center">餐廳一覽表</h3>
         <ul>
