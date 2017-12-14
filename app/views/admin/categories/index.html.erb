@@ -1,10 +1,20 @@
 <div class="container">
-  <br><br>
+  <br>
   <div>
     <%= link_to 'Restaurant', admin_restaurants_path %> |
     <%= link_to 'Categories', admin_categories_path %>
   </div>
-  <br>
+
+  <%= form_for [:admin, @category] do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: "請輸入新分類", class: "form-control-plaintext" %>
+      <button type="f.submit", class: "btn btn-primary">新增餐廳分類</button>
+    </div>
+    <% end %>
+    <% if @category.errors.any? %>   
+      <strong><%= @category.errors.full_messages.to_sentence %></strong>
+    <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <table class="table table-hover"> 
