@@ -8,7 +8,12 @@
   <%= form_for [:admin, @category] do |f| %>
     <div class="form-group">
       <%= f.text_field :name, placeholder: "請輸入新分類", class: "form-control-plaintext" %>
-      <button type="f.submit", class: "btn btn-primary">新增餐廳分類</button>
+      <% if params[:id] %>
+        <button type="f.submit" class="btn btn-warning">更新餐廳分類</button>
+      <% else %>
+        <button type="f.submit" class="btn btn-primary">新增餐廳分類</button>
+      </button>
+      <% end %>
     </div>
     <% end %>
     <% if @category.errors.any? %>   
@@ -23,6 +28,7 @@
                 <tr class="bg-primary">
                   <th class="col-md-3 text-center">#</th> 
                   <td class="col-md-6">餐廳種類名稱</td>           
+                  <td class="col-md-1 text-center">編輯</td>
                   <td class="col-md-1 text-center">刪除</td>
                 </tr>
             </thead>
@@ -34,6 +40,10 @@
                     <div class="col-md-6">
                       <td><%= category.name %></td>
                     </div> 
+                    <div class="col-md-1"><td><%= link_to admin_categories_path(id: category.id) do %>
+                      <h4 class="text-center"><span class="glyphicon glyphicon-search"></span></h4>
+                    <% end %>
+                    </td></div>
                     <div class="col-md-1">
                       <td><%= link_to admin_category_path(category), method: :delete, data:{ confirm: "確定刪除此類別?" } do %>
                         <h4 class="text-center">
