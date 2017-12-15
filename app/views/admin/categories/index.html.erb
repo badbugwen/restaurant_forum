@@ -1,59 +1,64 @@
 <div class="container">
-  <br>
-  <div>
-    <%= link_to 'Restaurant', admin_restaurants_path %> |
-    <%= link_to 'Categories', admin_categories_path %>
-  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <%= link_to 'Restaurant', admin_restaurants_path %> |
+        <%= link_to 'Categories', admin_categories_path %>
+      </div>
+      <h3 class="card-heading text-center">餐廳種類一覽表</h3>
+      <%= form_for [:admin, @category] do |f| %>
+        <div class="form-group pull-right">
+          <strong><%= @category.errors.full_messages.to_sentence if @category.errors.any?%></strong>
 
-  <%= form_for [:admin, @category] do |f| %>
-    <div class="form-group">
-      <%= f.text_field :name, placeholder: "請輸入新分類", class: "form-control-plaintext" %>
-      <% if params[:id] %>
-        <input type="submit" class="btn btn-warning" value="更新餐廳分類" >
-      <% else %>
-        <input type="submit" class="btn btn-primary" value="新增餐廳分類" >
-      <% end %>
-    </div>
-    <% end %>
-    <% if @category.errors.any? %>   
-      <strong><%= @category.errors.full_messages.to_sentence %></strong>
-    <% end %>
+          <%= f.text_field :name, placeholder: "請輸入新分類", class: "form-control-plaintext" %>
+          <% if params[:id] %>
+            <input type="submit" class="btn btn-warning" value="更新餐廳分類" >
+          <% else %>
+            <input type="submit" class="btn btn-primary" value="新增餐廳分類" >
+          <% end %>     
+        </div>   
+      <% end %>       
+    </div>  
+  </div>    
 
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-hover"> 
-        <h3 class="card-heading text-center">餐廳種類一覽表</h3>
-            <thead>              
-                <tr class="bg-primary">
-                  <th class="col-md-3 text-center">#</th> 
-                  <td class="col-md-6">餐廳種類名稱</td>           
-                  <td class="col-md-1 text-center">編輯</td>
-                  <td class="col-md-1 text-center">刪除</td>
-                </tr>
-            </thead>
+      <table class="table table-hover">        
+        <thead>              
+          <tr class="bg-primary">
+            <th class="col-md-3 text-center">#</th> 
+            <td class="col-md-6">餐廳種類名稱</td>           
+            <td class="col-md-1 text-center">編輯</td>
+            <td class="col-md-1 text-center">刪除</td>
+          </tr>          
+        </thead>
 
-            <tbody>
-                <% @categories.each do |category| %>
-                  <tr>
-                    <th scope="row" class="col-md-3"><%= category.id %></th>
-                    <div class="col-md-6">
-                      <td><%= category.name %></td>
-                    </div> 
-                    <div class="col-md-1"><td><%= link_to admin_categories_path(id: category.id) do %>
-                      <h4 class="text-center"><span class="glyphicon glyphicon-search"></span></h4>
-                    <% end %>
-                    </td></div>
-                    <div class="col-md-1">
-                      <td><%= link_to admin_category_path(category), method: :delete, data:{ confirm: "確定刪除此類別?" } do %>
-                        <h4 class="text-center">
-                          <span class="glyphicon glyphicon-trash"></span>
-                        </h4>
-                        <% end %>
-                      </td>
-                    </div>
-                  </tr>
-                <% end %>
-            </tbody>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <th scope="row" class="col-md-3"><%= category.id %></th>
+              <div class="col-md-6">
+                <td><%= category.name %></td>
+              </div> 
+              <div class="col-md-1">
+                <td><%= link_to admin_categories_path(id: category.id) do %>
+                  <h4 class="text-center">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </h4>
+                  <% end %>
+                </td>
+              </div>  
+              <div class="col-md-1">
+                <td><%= link_to admin_category_path(category), method: :delete, data:{ confirm: "確定刪除此類別?" } do %>
+                  <h4 class="text-center">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </h4>
+                  <% end %>
+                </td>
+              </div>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>    
