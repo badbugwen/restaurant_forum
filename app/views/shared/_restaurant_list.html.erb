@@ -1,3 +1,16 @@
+ <!-- categories nav -->
+  <ul class="nav nav-pills nav-pills-center">
+    <li role="presentation" class="<%= "active" if @category == nil %>"><%= link_to "全部餐廳", root_path %></li>
+
+<!-- 這邊判斷category==@category的時候要加 li.active -->
+    <% @categories.each do |category| %>
+      <li role="presentation" class="<%= "active" if category == @category %>">
+        <%= link_to category.name, category_path(category) %>
+      </li>
+    <% end %>  
+  </ul>
+
+  <br>
 <!-- restaurants List -->
     <% @restaurants.each do |restaurant| %>
       <div class="col-sm-6 col-md-4">
