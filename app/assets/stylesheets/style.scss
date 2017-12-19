@@ -11,3 +11,12 @@ body {
 }
 
 .field_with_errors { display: inline }
+
+.nav-pills-center {
+   text-align: center;
+ }
+ 
+ .nav-pills-center > li {
+   float: none;
+   display: inline-block;
+ }
