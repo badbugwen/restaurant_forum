@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-md-4">
-      <% if restaurant.image? %>
+      <% if @restaurant.image? %>
         <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
       <% else %>
         <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
