@@ -1,0 +1,23 @@
+<!-- restaurants List -->
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <% if restaurant.image? %>
+            <%= image_tag restaurant.image, width: '150px', class: "card-img-top rounded" %> 
+          <% else %>
+            <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+          <% end %>
+
+          <div class="card-body">
+            <h3 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+            <span class="badge badge-primary"><%= restaurant.category.name %></span>
+            <p class="card-text"><%= truncate(restaurant.description, length: 80) %></p>
+          </div>
+        </div>  
+      </div>
+    <% end %> 
+  
+  <!-- 有generate kaminari paginate bootstrap style -->
+    <div class="text-center">
+      <%= paginate @restaurants %>
+    </div>
