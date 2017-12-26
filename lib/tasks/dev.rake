@@ -38,7 +38,7 @@ namespace :dev do
         Comment.create!(
           content: FFaker::Lorem.sentences,
           restaurant_id: restaurant.id,
-          user_id: User.first.id
+          user_id: User.last.id
           )
       end
     end
