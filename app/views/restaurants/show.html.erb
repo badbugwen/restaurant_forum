@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+    <!-- restaurant info -->
      <h1><%= @restaurant.name %></h1> 
      <p>[<%= @restaurant.category.name %>]</p>
     </div>
@@ -25,9 +26,22 @@
     </div>
       <div class="col-md-12">
       <hr>
+      <!-- comments display area -->
+      <% @restaurant.comments.each do |comment| %>
+        <div>
+          <h4><%= comment.user.email.split("@").first %></h4>
+          <p><%= comment.content %></p>
+          <p class="text-muted">
+            <em><%= time_ago_in_words(comment.created_at) %> ago -</em>
+            <%= link_to "刪除", restaurant_comment_path(@restaurant, comment), method: :delete, data:{ confirm: "確定刪除?" } if current_user.admin? %> 
+          </p>  
+        </div>  
+      <% end %>
+      <hr>
+      <!-- New comment form -->
       <%= form_for [@restaurant, @comment] do |f| %>
         <div class="form_group">
-          <p>評論此餐廳</p>
+          評論此餐廳
           <%= f.text_area :content, placeholder: "請分享用餐經驗", class: "form-control" %>
         </div>
         <div class="form-group pull-right">
