@@ -3,7 +3,8 @@ namespace :dev do
     Restaurant.destroy_all
 
     500.times do |i|
-      Restaurant.create!(name: FFaker::Name.first_name,
+      Restaurant.create!(
+        name: FFaker::Name.first_name,
         opening_hours: FFaker::Time.datetime,
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
@@ -14,16 +15,34 @@ namespace :dev do
     puts "have created fake restaurants"
     puts "now you have #{Restaurant.count} restaurants data"
 
-    
-  
+    users = User.all
+    users.each do |user|
+          if !user.admin?
+            user.destroy
+          end
+        end
+
     20.times do |i|
-      User.create!(email: FFaker::Internet.email,
+      User.create!(
+        email: FFaker::Internet.email,
         password: "123456"
         )
     end  
-    puts "now you have #{User.count} users data"
+    puts "have created fake users"
+    puts "now you have #{User.count} users date"
 
-
-    
+    Comment.destroy_all
+    restaurants = Restaurant.all 
+    restaurants.each do |restaurant|
+      3.times do |i|
+        Comment.create!(
+          content: FFaker::Lorem.sentences,
+          restaurant_id: restaurant.id,
+          user_id: User.first.id
+          )
+      end
+    end
+    puts "have created fake comments"
+    puts "now you have #{Comment.count} comments data"  
   end
 end
