@@ -41,7 +41,7 @@
       <!-- New comment form -->
       <%= form_for [@restaurant, @comment] do |f| %>
         <div class="form_group">
-          評論此餐廳
+          <%= f.label :content, "評論此餐廳" %>
           <%= f.text_area :content, placeholder: "請分享用餐經驗", class: "form-control" %>
         </div>
         <div class="form-group pull-right">
