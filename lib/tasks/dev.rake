@@ -36,9 +36,9 @@ namespace :dev do
     restaurants.each do |restaurant|
       3.times do |i|
         Comment.create!(
-          content: FFaker::Lorem.sentences,
+          content: FFaker::Lorem.sentence,
           restaurant_id: restaurant.id,
-          user_id: User.last.id
+          user_id: User.all.sample.id
           )
       end
     end
