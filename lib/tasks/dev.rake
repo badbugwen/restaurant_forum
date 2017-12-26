@@ -13,5 +13,17 @@ namespace :dev do
     end
     puts "have created fake restaurants"
     puts "now you have #{Restaurant.count} restaurants data"
+
+    
+  
+    20.times do |i|
+      User.create!(email: FFaker::Internet.email,
+        password: "123456"
+        )
+    end  
+    puts "now you have #{User.count} users data"
+
+
+    
   end
 end
