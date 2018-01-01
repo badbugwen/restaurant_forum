@@ -17,7 +17,7 @@
       <!-- 導覽列 -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
-        
+
         <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -44,7 +44,7 @@
                 </li> 
                 <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span>'.html_safe,destroy_user_session_path, method: :delete %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, edit_user_registration_path%></li>
+                <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, edit_user_path(:id) %></li>
 
               <!-- 當使用者未登入，顯示註冊&登入 -->  
               <% else %>
