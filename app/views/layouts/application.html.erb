@@ -13,12 +13,10 @@
     </head>
 
     <body>
-  <!-- 用controller和action的name作為id，方便css指定到不同VIEW
-  <body id="<%= controller.controller_name %>-<%= controller.action_name %>">   -->
-  <!-- 導覽列 -->
+    <!-- 導覽列 -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
-  <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
@@ -27,42 +25,50 @@
               <span class="icon-bar"></span>
             </button>
 
+            <!-- nav brand,尚未成功加入nav brand image與文字共同顯示 -->
             <%=link_to "Kids friendly 親子餐廳評論網", root_path, class: "navbar-brand" %>
           </div>
    
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="pull-right text-right nav navbar-nav">
+
+              <!-- 當使用者登入/未登入，顯示不同選項 -->
               <% if current_user %> 
-                <li>
-                  <%= link_to '<span class="glyphicon glyphicon-list-alt"></span>'.html_safe,admin_restaurants_path if current_user.admin?  %>
-                    
+
+                <!-- 當使用者為admin，顯示後臺連結 -->
+                <li>  
+                  <%= link_to '<span class="glyphicon glyphicon-list-alt"></span>'.html_safe,admin_restaurants_path if current_user.admin? %>
                 </li> 
-                <li>
-                  <p class="navbar-text">Hi, <%= current_user.email %></p>
-                </li>
+                <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span>'.html_safe,destroy_user_session_path, method: :delete %></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, edit_user_registration_path%></li>
+
+              <!-- 當使用者未登入，顯示註冊&登入 -->  
               <% else %>
-                <li><%= link_to('註冊', new_user_registration_path) %></li>
-                <li><%= link_to('登入', new_user_session_path) %></li>
+                <li><%= link_to '註冊', new_user_registration_path %></li>
+                <li><%= link_to '登入', new_user_session_path %></li>
               <% end %>
             </ul>
           </div>
         </div>
       </nav>  
 
+      <!-- 用flash提示action訊息 -->
       <% if flash[:notice] %>
         <div class="container">
           <div class="row">
             <div class="alert alert-success alert-dismissible">
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                <%= notice %></div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <%= notice %>
+            </div>
           </div>
         </div>
       <% end %>
 
+      <!-- 用flash提示錯誤警告訊息 -->
       <% if flash[:alert] %>
         <div class="container">
           <div class="row">
@@ -75,7 +81,8 @@
           </div>
         </div>
       <% end %>    
-
+      
+      <!-- 呼叫action對應之html.erb -->
       <%= yield %>
 
     </body>
