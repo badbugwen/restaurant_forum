@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" >
+      <h1>個人資訊編輯:</h1>
+
+      <!-- 錯誤提示:名稱不可空白  -->
+      <% if @user.errors.any? %>
+        <h4>We have some errors here !</h4>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+        <hr>
+      <% end %>
+
+      <!-- User Profile edit form  -->      
+      <%= form_for [@user] do |f| %>
+        <div class="form_group">
+          <%= f.label :name, "您的名稱" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form_group">
+          <%= f.label :intro, "自我介紹" %>
+          <%= f.text_area :intro, class: "form-control" %>
+        </div>
+
+        <br>
+        <div class="form_group">        
+          <%= f.label :avatar, "上傳大頭照" %>
+          <%= image_tag @user.avatar, width: '150px' if @user.avatar? %>
+          <%= f.file_field :avatar %>
+        </div>   
+        <br>  
+        <div class="form-group">
+          <%= f.submit class: "btn btn-primary" %>
+          <%= link_to 'Cancel', user_path(@user), class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div> 

@@ -1,6 +1,7 @@
 /* (目前未使用)可用controller和action的name作為id，方便css指定到不同VIEW
-    body id="<%= controller.controller_name %>-<%= controller.action_name %>"  */
-    
+ * body id="<%= controller.controller_name %>-<%= controller.action_name %>"  
+ */
+
 body {
   background: image-url("bgi.jpg");
   background-repeat: no-repeat;
