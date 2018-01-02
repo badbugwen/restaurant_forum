@@ -7,13 +7,17 @@ class UsersController < ApplicationController
 
   def update
     if @user == current_user
-      @user.update(user_params)
-      redirect_to user_path(params[:id])
-      flash[:notice] = "User's profile was successfully updated"
+      if @user.update(user_params)
+        redirect_to user_path(params[:id])
+        flash[:notice] = "User's profile was successfully updated"
+      else
+        flash.now[:alert] = "User's profile was failed to update"
+        render :edit
+      end
     else
-      flash.now[:alert] = "User's profile was failed to update"
-      render :edit
-    end
+        flash[:alert] = "You can not edit other user's profile!"
+        redirect_to user_path(params[:id])
+    end    
   end
 
 
