@@ -9,6 +9,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -24,3 +25,24 @@ body {
    float: none;
    display: inline-block;
  }
+
+/* commented restaurants in user's profile */
+.my-restaurant{
+  display: inline-block;
+  background: #FFEE99; 
+  text-align: center;
+  height: 150 px;
+  border: 1px solid #99ff99;
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin: 10px;
+}
+.my-restaurant > img {
+  height: 100px;
+  display:block;
+}
+
+/* background opacity change without text effect */
+.panel{
+  background:rgba(0,0,0,0.1)
+}

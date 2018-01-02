@@ -29,8 +29,10 @@
       <!-- comments display area -->
       <% @restaurant.comments.each do |comment| %>
         <div>
-          <%= image_tag comment.user.avatar, width: '100px', class: "rounded img-responsive center-block img-circle" if comment.user.avatar %>
-          <h4>
+          <%= image_tag comment.user.avatar, width: '50px', class: "rounded img-responsive img-circle" if comment.user.avatar %>
+        </div>
+        <div>  
+          <h4> 
             <% if comment.user.name %>
               <%= link_to comment.user.name, user_path(comment.user) %>
             <% else %>

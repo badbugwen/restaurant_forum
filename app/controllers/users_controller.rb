@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show   
+    @commented_restaurants = @user.restaurants
+    
   end
 
 

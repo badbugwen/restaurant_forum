@@ -30,5 +30,27 @@
         <%= link_to 'Edit Profile', edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %>
       </div>
     </div>
+  </div>  
+  <br>
+  <hr>
+    <!-- commented restaurant list -->  
+  <div class="row "> 
+    <div class="panel panel-success">
+      <div class="panel-heading text-center">
+        <h3><%= @user.name %>評論過<%= @commented_restaurants.uniq.count %>間餐廳</h3>
+      </div>
+      <div class="panel-body">
+        <% @commented_restaurants.uniq.each do |commented_restaurant| %>
+          <div class="my-restaurant">
+            <% if commented_restaurant.image? %>
+              <%= image_tag commented_restaurant.image, class: "img-rounded" %> 
+            <% else %>
+              <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+            <% end %>
+            <strong><%= link_to commented_restaurant.name, restaurant_path(commented_restaurant) %></strong>
+          </div>  
+        <% end %> 
+      </div>  
+    </div>  
   </div>
 </div>    
