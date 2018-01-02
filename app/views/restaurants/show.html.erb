@@ -29,7 +29,14 @@
       <!-- comments display area -->
       <% @restaurant.comments.each do |comment| %>
         <div>
-          <h4><%= comment.user.email.split("@").first %></h4>
+          <%= image_tag comment.user.avatar, width: '100px', class: "rounded img-responsive center-block img-circle" if comment.user.avatar %>
+          <h4>
+            <% if comment.user.name %>
+              <%= link_to comment.user.name, user_path(comment.user) %>
+            <% else %>
+              <%= comment.email.split("@").first %> 
+            <% end %>
+          </h4>
           <p><%= comment.content %></p>
           <p class="text-muted">
             <em><%= time_ago_in_words(comment.created_at) %> ago -</em>

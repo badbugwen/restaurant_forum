@@ -42,7 +42,13 @@
                 <li>  
                   <%= link_to '<span class="glyphicon glyphicon-list-alt"></span>'.html_safe,admin_restaurants_path if current_user.admin? %>
                 </li> 
-                <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
+                <li><p class="navbar-text">Hi, 
+                  <% if current_user.name %>
+                    <%= current_user.name %>
+                  <% else %>
+                    <%= current_user.email.split("@").first %> 
+                  <% end %>  
+                </p></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, user_path(id: current_user.id) %></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span>'.html_safe,destroy_user_session_path, method: :delete %></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, edit_user_registration_path %></li>
