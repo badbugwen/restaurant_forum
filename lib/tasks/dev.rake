@@ -25,7 +25,9 @@ namespace :dev do
     20.times do |i|
       User.create!(
         email: FFaker::Internet.email,
-        password: "123456"
+        password: "123456",
+        name: FFaker::Name.name,
+        intro: FFaker::Lorem.paragraph
         )
     end  
     puts "have created fake users"
