@@ -1,5 +1,6 @@
  <!-- categories nav -->
   <ul class="nav nav-pills nav-pills-center">
+    <button type="button" class="btn btn-default btn-lg navbar-btn"><%= link_to "最新動態", feeds_restaurants_path %></button>
     <li role="presentation" class="<%= "active" if @category == nil %>"><%= link_to "全部餐廳", root_path %></li>
 
 <!-- 這邊判斷category==@category的時候要加 li.active -->
