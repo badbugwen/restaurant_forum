@@ -40,15 +40,15 @@
         <h3><%= @user.name %>評論過<%= @commented_restaurants.uniq.count %>間餐廳</h3>
       </div>
       <div class="panel-body">
-        <% @commented_restaurants.uniq.each do |commented_restaurant| %>
-        <%= link_to restaurant_path(commented_restaurant) do %>
+        <% @commented_restaurants.uniq.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant) do %>
           <div class="my-restaurant">
-            <% if commented_restaurant.image? %>
-              <%= image_tag commented_restaurant.image, class: "img-rounded" %> 
+            <% if restaurant.image? %>
+              <%= image_tag restaurant.image, class: "img-rounded" %> 
             <% else %>                  
               <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
-            <% end %>          
-            <h4><%= commented_restaurant.name %></h4>
+            <% end %>  
+            <h4><%= restaurant.name %></h4>
           </div>
         <% end %>    
         <% end %> 
