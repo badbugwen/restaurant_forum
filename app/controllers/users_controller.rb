@@ -3,9 +3,7 @@ class UsersController < ApplicationController
 
   def show   
     @commented_restaurants = @user.restaurants
-    
   end
-
 
   def update
     if @user == current_user
