@@ -26,10 +26,15 @@ body {
    float: none;
    display: inline-block;
  }
+/* nav bar catergory list 的最新動態 */
+ .news {
+  background-color: white;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+  margin-right: 2px;
+ }
 
 /* commented restaurants in user's profile */
-
-
 
 .my-restaurant {
   background-color: #dff0d8;
@@ -38,15 +43,17 @@ body {
   padding: 3px ;
   border-radius: 10px;
   margin: 10px;
+  min-width: 100px;
 }
 
 
 .my-restaurant > img {
-  height: 60px; 
+  height: 70px; 
 }
 
-.panel a:hover .my-restaurant {
+.panel a:hover a:focus .my-restaurant {
   background-color: #FFAA33;
+  text-decoration: none;
   }
 
 /* background opacity change without text effect */
