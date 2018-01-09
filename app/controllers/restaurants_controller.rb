@@ -14,5 +14,10 @@ class RestaurantsController < ApplicationController
     @recent_comments = Comment.order(created_at: :desc).limit(10)
     @categories = Category.all
   end
+
+  def dashboard
+    @restaurant = Restaurant.find(params[:id])
+  end
+  
 end
 
