@@ -1,7 +1,13 @@
 <div class ="container">
-  <ul class="nav nav-pills">  
-    <li role="presentation" class="active"><%= link_to "最新動態", feeds_restaurants_path %></li>
-    <li role="presentation"><%= link_to "首頁", root_path %></li> 
+  <!-- feesds and categories nav -->
+  <ul class="nav nav-pills nav-pills-center ">
+    <!-- 最新動態為active,全部餐廳用nav_focus,其餘categories不需要active判斷 -->
+    <li role="presentation" class="nav_focus"><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation"><%= link_to "全部餐廳", root_path %></li> 
+    
+    <% @categories.each do |category| %>
+    <li role="presentation"><%= link_to category.name, category_path(category) %></li>
+    <% end %>  
   </ul>
   <h2 class="text-center">餐廳最新動態</h2>
   <br>
