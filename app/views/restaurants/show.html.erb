@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-    <!-- restaurant info -->
+      <!-- restaurant info -->
      <h1><%= @restaurant.name %></h1> 
      <p>[<%= @restaurant.category.name %>]</p>
     </div>
@@ -28,7 +28,7 @@
       <%= link_to 'Dashboard', dashboard_restaurant_path(@restaurant), class: "btn btn-primary" %>
     </div>
 
-      <div class="col-md-12">
+    <div class="col-md-12">
       <hr>
       <!-- comments display area -->
       <% @restaurant.comments.each do |comment| %>
