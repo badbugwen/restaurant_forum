@@ -24,9 +24,10 @@
           <% end %>
 
           <div class="card-body">
-            <h3 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+            <h3 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant) %> </h3>
             <span class="label label-success"><%= restaurant.category.name %></span>
             <p class="card-text"><%= truncate(restaurant.description, length: 80) %></p>
+            <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
           </div>
         </div>  
       </div>
