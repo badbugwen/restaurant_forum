@@ -11,10 +11,12 @@ Rails.application.routes.draw do
     # DELETE restaurants/restaurant_id/comments/:id
     resources :comments, only: [:create, :destroy]
 
-    # 瀏覽所有餐廳的最新動態
+    # 瀏覽所有餐廳的最新動態/前10熱門餐廳
     collection do
       get :feeds
+      get :ranking
     end
+
     
     member do
       # 瀏覽個別餐廳的 Dashboard
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
       # 加入最愛/取消最愛個別餐廳
       post :favorite
       post :unfavorite
-      
+
       # 對個別餐廳按讚/收回讚
       post :like
       post :unlike
