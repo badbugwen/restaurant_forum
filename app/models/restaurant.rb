@@ -14,12 +14,17 @@ class Restaurant < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
 
-  # 「餐廳有很多使用者按讚」的多對多關係(模式同"收藏")
+  # 「餐廳有很多使用者按讚」的多對多關係(模式同"收藏")s
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
   # 判斷是否有user收藏此餐廳
   def is_favorited?(user)
     self.favorited_users.include?(user)
+  end
+
+  # 判斷是否有user對此餐廳按讚
+  def is_liked?(user)
+    self.liked_users.include?(user)
   end
 end
