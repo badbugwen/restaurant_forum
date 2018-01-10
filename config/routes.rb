@@ -24,6 +24,11 @@ Rails.application.routes.draw do
       # 加入最愛/取消最愛個別餐廳
       post :favorite
       post :unfavorite
+      
+      # 對個別餐廳按讚/收回讚
+      post :like
+      post :unlike
+
     end  
   end
 
