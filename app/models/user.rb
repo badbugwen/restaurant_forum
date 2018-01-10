@@ -12,10 +12,14 @@ class User < ApplicationRecord
 
   # 「餐廳被很多使用者收藏」的多對多關聯
   #當 Restaurant 物件被刪除時，順便刪除依賴的 favorite
-  has_many :favorites, dependent: :destroy
   # 將關聯名稱自訂為 :favorited_users
   # 自訂名稱後，Rails 無法自動推論來源名稱，需另加 source 告知 model name
+  has_many :favorites, dependent: :destroy
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
+
+  # 「餐廳有很多使用者按讚」的多對多關係(模式同"收藏")
+  has_many :likes, dependent: :destroy
+  has_many :liked_restaurants, through: :likes, source: :user
 
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
