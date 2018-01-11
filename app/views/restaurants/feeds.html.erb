@@ -13,13 +13,13 @@
   <br>
   <div class ="row">
     <div class ="col-xs-12 col-md-5 col-md-offset-1">
-      <div class="panel panel-default">
+      <div class="panel panel-primary">
         <!-- Default panel contents -->
         <div class="panel-heading">最新餐廳</div>
         <!-- List group 列出最新10個加入餐廳-->
         <ul class="list-group">
         <% @recent_restaurants.each do |restaurant| %>
-          <li class="list-group-item">
+          <li class="panel-body list-group-item ">
             <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
             <p><%= restaurant.category.name %></p>
             <p><%= restaurant.description %></p>  
@@ -31,7 +31,7 @@
   
 
     <div class ="col-xs-12 col-md-5">
-      <div class="panel panel-default">
+      <div class="panel panel-primary">
         <!-- Default panel contents -->
         <div class="panel-heading">最新評論</div>
         <!-- List group 列出最新10個評論-->

@@ -1,7 +1,7 @@
 <div class ="container">
   <!-- feesds and categories nav -->
   <ul class="nav nav-pills nav-pills-center ">
-    <!-- 最新動態為active,全部餐廳用nav_focus,其餘categories不需要active判斷 -->
+    <!-- 熱門餐廳為active,最新動態用nav_focus,其餘categories不需要active判斷 -->
     <li role="presentation" class="nav_focus"><%= link_to "最新動態", feeds_restaurants_path %></li>
     <li role="presentation" class="active"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
     <li role="presentation"><%= link_to "全部餐廳", root_path %></li> 
@@ -9,13 +9,31 @@
       <li role="presentation"><%= link_to category.name, category_path(category) %></li>
     <% end %>  
   </ul> 
-   
-  <h2>Top 10 Restaurants</h2>
-  <% @top_restaurants.each do |restaurant| %>
-    <h4><%= restaurant.name %></h4>收藏數:<%= restaurant.favorites_count %>
-    <p><%= restaurant.description %></p>
-    <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
-    <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
-    <hr>
-  <% end %>  
+  
+  <h2>十大熱門餐廳</h2>
+  <!-- 依照收藏數降冪排序取前10位熱門餐廳 -->
+  <% @top_restaurants.each do |restaurant| %> 
+    <div class="panel panel-default">
+      <div class="panel-body">  
+        <div class ="row">
+          <div class ="col-sm-5 col-md-2">
+            <!-- 若無照片則以glyphicon代替 -->
+            <% if restaurant.image? %>
+              <%= image_tag restaurant.image, height: '100px', class: "img-responsive" %>
+            <% else %>
+              <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+            <% end %>
+          </div>  
+          <div class="col-sm-7 col-md-8">
+            <h4><%= restaurant.name %>  <span class="label label-default">收藏數:<%= restaurant.favorites_count %></span></h4>
+            <p><%= restaurant.description %></p>
+            <br>
+            <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
+            <!-- 呼叫收藏按鈕樣板 -->
+            <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+          </div>
+        </div>
+      </div>  
+    </div>
+  <% end %> 
 </div>
