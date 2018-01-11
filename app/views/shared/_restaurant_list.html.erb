@@ -2,6 +2,7 @@
   <ul class="nav nav-pills nav-pills-center ">
     <!-- 自定義nav_focus作為最新動態的class -->
     <li role="presentation" class="nav_focus"><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation" class="nav_focus"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
     <li role="presentation" class="<%= "active" if @category == nil %>"><%= link_to "全部餐廳", root_path %></li>
 
 <!-- 這邊判斷category==@category的時候要加 li.active -->

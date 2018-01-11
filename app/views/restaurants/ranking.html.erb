@@ -1,8 +1,21 @@
-<h2>Top 10 Restaurants</h2>
-<% @top_restaurants.each do |restaurant| %>
-  <h4><%= restaurant.name %></h4>收藏數:<%= restaurant.favorites_count %>
-  <p><%= restaurant.description %></p>
-  <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
-  <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
-  <hr>
-<% end %>  
+<div class ="container">
+  <!-- feesds and categories nav -->
+  <ul class="nav nav-pills nav-pills-center ">
+    <!-- 最新動態為active,全部餐廳用nav_focus,其餘categories不需要active判斷 -->
+    <li role="presentation" class="nav_focus"><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation" class="active"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
+    <li role="presentation"><%= link_to "全部餐廳", root_path %></li> 
+    <% @categories.each do |category| %>
+      <li role="presentation"><%= link_to category.name, category_path(category) %></li>
+    <% end %>  
+  </ul> 
+   
+  <h2>Top 10 Restaurants</h2>
+  <% @top_restaurants.each do |restaurant| %>
+    <h4><%= restaurant.name %></h4>收藏數:<%= restaurant.favorites_count %>
+    <p><%= restaurant.description %></p>
+    <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
+    <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+    <hr>
+  <% end %>  
+</div>
