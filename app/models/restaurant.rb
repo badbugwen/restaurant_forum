@@ -27,9 +27,4 @@ class Restaurant < ApplicationRecord
   def is_liked?(user)
     self.liked_users.include?(user)
   end
-
-  def count_favorites
-    self.favorites_count = self.favorited_users.uniq.count
-    self.save
-  end
 end

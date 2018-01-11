@@ -10,7 +10,8 @@
     <% end %>  
   </ul> 
   
-  <h2>十大熱門餐廳</h2>
+  <h2 class="text-center">十大熱門餐廳</h2>
+  <br>
   <!-- 依照收藏數降冪排序取前10位熱門餐廳 -->
   <% @top_restaurants.each do |restaurant| %> 
     <div class="panel panel-default">
@@ -25,7 +26,16 @@
             <% end %>
           </div>  
           <div class="col-sm-7 col-md-8">
-            <h4><%= restaurant.name %>  <span class="label label-default">收藏數:<%= restaurant.favorites_count %></span></h4>
+            <h4><%= restaurant.name %>  
+              <span class="label label-default">
+                收藏數:
+                <% if restaurant.favorites_count == nil %>
+                0
+                <% else %>
+                  <%=restaurant.favorites_count %>
+                <% end %>    
+              </span>
+            </h4>
             <p><%= restaurant.description %></p>
             <br>
             <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
