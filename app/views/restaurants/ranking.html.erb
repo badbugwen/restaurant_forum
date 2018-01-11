@@ -1,0 +1,8 @@
+<h2>Top 10 Restaurants</h2>
+<% @top_restaurants.each do |restaurant| %>
+  <h4><%= restaurant.name %></h4>收藏數:<%= restaurant.favorites_count %>
+  <p><%= restaurant.description %></p>
+  <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
+  <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+  <hr>
+<% end %>  
