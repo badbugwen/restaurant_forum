@@ -18,7 +18,7 @@ namespace :dev do
 
     users = User.all
     users.each do |user|
-          if !user.admin?
+          if !user.admin? && user.name != "User"
             user.destroy
           end
         end
@@ -34,6 +34,26 @@ namespace :dev do
     puts "have created fake users"
     puts "now you have #{User.count} users date"
 
+
+    1500.times do |i|
+      Favorite.create!(
+        user_id: User.all.sample.id,
+        restaurant_id: Restaurant.all.sample.id
+        )
+    end
+    puts "have created fake favorites"
+    puts "now you have 1500 fake favorites"
+
+    1500.times do |i|
+      Like.create!(
+        user_id: User.all.sample.id,
+        restaurant_id: Restaurant.all.sample.id
+        )
+    end
+    puts "have created fakelikes"
+    puts "now you have 1500 fake likes"
+
+
     Comment.destroy_all
     restaurants = Restaurant.all 
     restaurants.each do |restaurant|
@@ -47,5 +67,6 @@ namespace :dev do
     end
     puts "have created fake comments"
     puts "now you have #{Comment.count} comments data"  
+
   end
 end
