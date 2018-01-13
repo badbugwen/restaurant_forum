@@ -34,6 +34,12 @@ body {
   margin-right: 2px;
  }
 
+/* restaurant list */
+.thumbnail > img {
+  max-height: 250px; 
+  margin: 10px auto;
+}
+
 /* commented restaurants in user's profile */
 
 .my-restaurant {

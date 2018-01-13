@@ -16,18 +16,17 @@
   <br>
   <!-- restaurants List -->
   <div class="row">
-    <div class="col-12">
-      <% @restaurants.each do |restaurant| %>
+    <% @restaurants.each do |restaurant| %>
       <div class="col-sm-6 col-md-4">
-        <div class="card">
+        <div class="thumbnail">
           <% if restaurant.image? %>
-            <%= image_tag restaurant.image, width: '150px', class: "card-img-top rounded" %> 
+            <%= image_tag restaurant.image, height:'50%', class: "img-thumbnail" %> 
           <% else %>
             <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
           <% end %>
 
-          <div class="card-body">
-            <h3 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant) %> </h3>
+          <div class="caption">
+            <h3><%= link_to restaurant.name, restaurant_path(restaurant) %> </h3>
             <span class="label label-success"><%= restaurant.category.name %></span>
             <p class="card-text"><%= truncate(restaurant.description, length: 80) %></p>
             <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
@@ -35,8 +34,7 @@
           </div>
         </div>
       </div>  
-      <% end %>     
-    </div> 
+    <% end %>      
   </div> 
   <!-- 有generate kaminari paginate bootstrap style -->
   <div class="text-center"><%= paginate @restaurants %></div>
