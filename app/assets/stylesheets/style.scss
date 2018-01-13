@@ -26,9 +26,8 @@ body {
    float: none;
    display: inline-block;
  }
-/* nav bar 的焦點連結 */
- .nav_focus {
-  background-color: white;
+/* nav bar 的非點擊連結 */
+ .nav_inactive {
   border: 1px solid #337ab7;
   border-radius: 4px;
   margin-right: 2px;

@@ -1,17 +1,29 @@
  <div class="container">
   <!-- feesds and categories nav -->
-  <ul class="nav nav-pills nav-pills-center ">
+  <ul class="nav nav-pills nav-pills-center">
     <!-- 自定義nav_focus作為最新動態的class -->
-    <li role="presentation" class="nav_focus"><%= link_to "最新動態", feeds_restaurants_path %></li>
-    <li role="presentation" class="nav_focus"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
+    <li role="presentation" class="nav_inactive"><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation" class="nav_inactive"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
     <li role="presentation" class="<%= "active" if @category == nil %>"><%= link_to "全部餐廳", root_path %></li>
 
-    <!-- 這邊判斷category==@category的時候要加 li.active -->
-    <% @categories.each do |category| %>
-      <li role="presentation" class="<%= "active" if category == @category %>">
-        <%= link_to category.name, category_path(category) %>
-      </li>
-    <% end %>  
+    <!-- 下拉式各類餐廳 -->
+    <li role="presentation" class="dropdown <%= "active" if @category %>">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <% if @category %>
+          <%= @category.name %>
+        <% else %>  
+          選擇分類
+        <% end %>  
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <% @categories.each do |category| %>
+          <li role="presentation">
+            <%= link_to category.name, category_path(category) %>
+          </li>
+        <% end %> 
+      </ul>
+    </li>    
   </ul>
   <br>
   <!-- restaurants List -->
