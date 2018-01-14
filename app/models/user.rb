@@ -21,6 +21,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :user
 
+  # 「使用者可以追蹤很多其他使用者」的自關聯
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin" 
