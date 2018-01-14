@@ -4,10 +4,10 @@
 
 body {
   background: image-url("bgi.jpg");
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-attachment: fixed;
   background-position: center;
-  background-size: cover;
+  background-size: 100% auto;
 }
 
 .container {
