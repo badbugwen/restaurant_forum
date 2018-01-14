@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # use devise gem for user login
   devise_for :user, :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update]
 
   # user僅開放觀看 index & show for restaurant
   resources :restaurants, only: [:index, :show] do
@@ -16,8 +16,7 @@ Rails.application.routes.draw do
       get :feeds
       get :ranking
     end
-
-    
+  
     member do
       # 瀏覽個別餐廳的 Dashboard
       # GET restaurants/:id/dashboard
@@ -30,9 +29,11 @@ Rails.application.routes.draw do
       # 對個別餐廳按讚/收回讚
       post :like
       post :unlike
-
     end  
   end
+
+  # user可 建立/刪除 追蹤其他user
+  resources :followships, only: [:create, :destroy]
 
   # 一般使用者僅開放Read for category
   resources :categories, only: [:show]
