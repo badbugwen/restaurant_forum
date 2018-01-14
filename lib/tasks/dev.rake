@@ -43,7 +43,7 @@ namespace :dev do
         )
     end
     puts "have created fake favorites"
-    puts "now you have 1500 fake favorites"
+    puts "now you have #{Favorite.count} fake favorites data"
 
     1500.times do |i|
       Like.create!(
@@ -51,8 +51,8 @@ namespace :dev do
         restaurant_id: Restaurant.all.sample.id
         )
     end
-    puts "have created fakelikes"
-    puts "now you have 1500 fake likes"
+    puts "have created fake likes"
+    puts "now you have #{Like.count} fake likes data"
 
 
     Comment.destroy_all
