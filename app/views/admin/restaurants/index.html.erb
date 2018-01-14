@@ -10,7 +10,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <h3 class="text-center">餐廳一覽表  </h3>
       <%= link_to '<span class="glyphicon glyphicon-plus">New Restaurant</span>'.html_safe, new_admin_restaurant_path, class:"btn btn-primary pull-right" %>
       <table class="table table-hover"> 
@@ -18,10 +18,10 @@
           <div class="row">
             <tr class="bg-primary">
               <td class="col-md-3 text-center">餐廳照片</td> 
-              <td class="col-md-6">餐廳訊息</td>           
-              <td class="col-md-1 text-center">檢視</td>
-              <td lass="col-md-1 text-center">編輯</td>
-              <td class="col-md-1 text-center">刪除</td>
+              <td class="col-md-4">餐廳訊息</td>           
+              <td class="col-md-1">檢視</td>
+              <td class="col-md-1">編輯</td>
+              <td class="col-md-1">刪除</td>
             </tr>
           </div>
         </thead>
@@ -36,7 +36,7 @@
                 <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
               <% end %>
             </th>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <td>
                 餐廳名稱: <%=restaurant.name %><br>
                 餐廳類型: <%=restaurant.category.name %><br>

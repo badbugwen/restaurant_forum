@@ -42,8 +42,6 @@
           <% else %>
             <h3 class="text-center"><span class="glyphicon glyphicon-user"></span></h3>
           <% end %>
-        </div>
-        <div>  
           <h4> 
             <% if comment.user.name %>
               <%= link_to comment.user.name, user_path(comment.user) %>
@@ -51,6 +49,8 @@
               <%= comment.email.split("@").first %> 
             <% end %>
           </h4>
+        </div>
+        <div>  
           <p><%= comment.content %></p>
           <p class="text-muted">
             <em><%= time_ago_in_words(comment.created_at) %> ago -</em>
