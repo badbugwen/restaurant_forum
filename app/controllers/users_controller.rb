@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except:[:index]
+
+  def index
+    @users = User.all
+  end
 
   def show   
     @commented_restaurants = @user.restaurants

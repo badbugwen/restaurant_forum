@@ -1,2 +1,7 @@
 class Followship < ApplicationRecord
+  # 限制「每個 User 只能追蹤另一個 User 一次」
+  validates :following_id, uniqueness: { scope: :user_id }
+
+  belongs_to :user 
+  belongs_to :followings, Class_name: "User"
 end

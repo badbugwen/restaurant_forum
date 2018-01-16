@@ -1,0 +1,10 @@
+<ul>
+
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
+      <%= link_to 'Follow', followship_path(following_id :user), method: :post, class: 'btn btn-danger' %>
+    </li>
+  <% end %>
+
+</ul>
