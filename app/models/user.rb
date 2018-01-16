@@ -28,6 +28,11 @@ class User < ApplicationRecord
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin" 
-  end     
+  end 
+
+  #判斷該user是否有追蹤指定之(user)
+  def following?(user)
+    self.followings.include?(user)      
+  end    
 
 end
