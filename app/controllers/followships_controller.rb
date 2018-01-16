@@ -1,8 +1,9 @@
 class FollowshipsController < ApplicationController
   def create
     @followship = current_user.followships.build(following_id: params[:following_id])
+
     if @followship.save
-      flash[:notice] = "您已將 #{@user.name} 加入追蹤名單!"
+      flash[:notice] = "您已將 #{User.find_by(id: params[:following_id]).name} 加入追蹤名單!"
       redirect_back(fallback_location: root_path)     
     else
       flash[:alert] = @followship.errors.full_messages.to_sentence
