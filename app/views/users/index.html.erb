@@ -3,7 +3,8 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %>
-      <%= link_to 'Follow', followships_path(following_id: user, user_id: current_user), method: :post, class: 'btn btn-danger' %>
+      <%= link_to 'Follow', followships_path(following_id: user), method: :post, class: 'btn btn-danger' %>
+      <%= link_to 'Unfollow', followship_path(user), method: :delete, class: 'btn btn-default' %>
     </li>
   <% end %>
 
