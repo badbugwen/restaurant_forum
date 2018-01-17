@@ -2,14 +2,8 @@
 
   <% @users.each do |user| %>
     <li>
-      <%= user.name %>
-      <% if user != current_user %>  
-        <% if current_user.following?(user) %>
-          <%= link_to '<span class="glyphicon glyphicon-eye-close"></span>'.html_safe, followship_path(user), method: :delete %>
-        <% else %>  
-          <%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, followships_path(following_id: user), method: :post %>
-        <% end %>
-      <% end %>  
+      <%= user.name %>有<%= Followship.where(following_id: user).size %>個關注者
+      <%= render partial: "shared/followship", locals: {user: user} %>
     </li>
   <% end %>
 
