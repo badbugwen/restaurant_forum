@@ -43,11 +43,7 @@
             <h3 class="text-center"><span class="glyphicon glyphicon-user"></span></h3>
           <% end %>
           <h4> 
-            <% if comment.user.name %>
-              <%= link_to comment.user.name, user_path(comment.user) %>
-            <% else %>
-              <%= comment.email.split("@").first %> 
-            <% end %>
+            <%= link_to comment.user.name, user_path(comment.user) %>
           </h4>
         </div>
         <div>  

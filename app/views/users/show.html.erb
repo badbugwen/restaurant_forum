@@ -15,13 +15,7 @@
       <!-- user's data -->
       <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
         <ul class="list-unstyled">
-          <li><h1>
-            <% if @user.name %>
-              <%= @user.name %>
-            <% else %>
-              <%= @user.email.split("@").first %> 
-            <% end %>       
-          </h1></li>
+          <li><h1><%= @user.name %></h1></li>
           <li><%= @user.email %></li>
           <li><%= @user.intro if @user.intro %></li>
         </ul>
