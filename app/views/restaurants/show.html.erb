@@ -41,8 +41,7 @@
       <!-- comments display area -->
       <% @restaurant.comments.each do |comment| %>
         <div>
-          <!-- user's avatar and name can not in same line still -->
-          <%= image_tag comment.user.avatar, width: '50px', class: "rounded img-responsive img-circle" if comment.user.avatar %>
+          <%= image_tag comment.user.avatar, width: '50px', class: "rounded img-circle" if comment.user.avatar %>
           <%= link_to comment.user.name, user_path(comment.user) %>
         </div>
         <div>  
