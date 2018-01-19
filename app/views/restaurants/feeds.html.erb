@@ -15,7 +15,13 @@
         <% @recent_restaurants.each do |restaurant| %>
           <li class="panel-body list-group-item ">
             <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-            <p><%= restaurant.category.name %></p>
+            <p> 
+              <% if restaurant.category %>
+                [<%= restaurant.category.name %>]
+              <% else %>
+                [未分類]
+              <% end %>  
+              </p>
             <p><%= restaurant.description %></p>  
           </li>
           <% end %>

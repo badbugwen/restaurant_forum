@@ -1,8 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-     <h1><%= @restaurant.name %></h1> 
-     <p>[<%= @restaurant.category.name %>]</p>
+      <h1><%= @restaurant.name %></h1> 
+      <p>
+        <% if @restaurant.category %>
+          [<%= @restaurant.category.name %>]
+        <% else %>
+          [未分類]
+        <% end %>  
+      </p>
     </div>
 
     <div class="col-md-4">
