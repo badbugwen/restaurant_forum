@@ -24,12 +24,8 @@ class RestaurantsController < ApplicationController
   
    # POST /restaurants/:id/favorite
   def favorite
-    if Favorite.where(restaurant: @restaurant, user: current_user).count < 1 # 若user未曾收藏過此餐廳
-      @restaurant.favorites.create!(user: current_user)
-    else
-      flash[:alert] = "You ALREADY favorited this restaurant!"  
-    end  
-      # 導回上一頁，若找不到上一頁則回首頁
+    @restaurant.favorites.create!(user: current_user) 
+    # 導回上一頁，若找不到上一頁則回首頁
     redirect_back(fallback_location: root_path)
   end
 
@@ -41,11 +37,7 @@ class RestaurantsController < ApplicationController
   end  
 
   def like
-    if Like.where(restaurant: @restaurant, user: current_user).count < 1 # 若user未曾like過此餐廳
-      @restaurant.likes.create!(user_id: current_user.id)
-    else
-      flash[:alert] = "You ALREADY liked this restaurant!" 
-    end   
+    @restaurant.likes.create!(user_id: current_user.id)
     redirect_back(fallback_location: root_path)
   end
 
