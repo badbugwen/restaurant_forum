@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.page(params[:page]).per(9)
-    @categories = Category.all
+    @categories = Category.order(created_at: :desc)
   end
   
   def show
@@ -13,7 +13,6 @@ class RestaurantsController < ApplicationController
   def feeds
     @recent_restaurants = Restaurant.order(created_at: :desc).limit(10)
     @recent_comments = Comment.order(created_at: :desc).limit(10)
-    @categories = Category.all
   end
 
   def dashboard
@@ -21,7 +20,6 @@ class RestaurantsController < ApplicationController
 
   def ranking
     @top_restaurants = Restaurant.order(favorites_count: :desc).limit(10)
-    @categories = Category.all
   end
   
    # POST /restaurants/:id/favorite

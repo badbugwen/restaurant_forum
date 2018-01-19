@@ -1,34 +1,10 @@
 <div class ="container">
   <!-- nav bar -->
-  <ul class="nav nav-pills nav-pills-center ">
-    <!-- 當下頁面按鈕為active -->
-    <li role="presentation" class="active"><%= link_to "最新動態", feeds_restaurants_path %></li>
-    <li role="presentation" class="nav_inactive"><%= link_to "熱門餐廳", ranking_restaurants_path %></li>
-    <li role="presentation" class="nav_inactive"><%= link_to "美食達人", users_path %></li>
-    <li role="presentation"><%= link_to "全部餐廳", root_path %></li>  
-    <!-- 下拉式各類餐廳 -->
-    <li role="presentation" class="dropdown <%= "active" if @category %>">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <% if @category %>
-          <%= @category.name %>
-        <% else %>  
-          選擇分類
-        <% end %>  
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <% @categories.each do |category| %>
-          <li role="presentation">
-            <%= link_to category.name, category_path(category) %>
-          </li>
-        <% end %> 
-      </ul>
-    </li>    
-  </ul>
+  <%= render partial: "shared/navBar" %>
   <!-- title -->
   <br>
   <h2 class="text-center">餐廳最新動態</h2>
-  <br  
+  <br>  
   <div class ="row">
     <div class ="col-xs-12 col-md-5 col-md-offset-1">
       <div class="panel panel-primary">

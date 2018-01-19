@@ -1,0 +1,57 @@
+<!--nav bar -->
+<div class="row">
+  <div class="col-10 col-offset-3">
+    <ul class="nav nav-pills">
+      <!-- 利用不同action的獨有variable definition做當下頁面按鈕為active的判定依據 -->
+      <% if @recent_comments %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation" class="nav_inactive">
+       <% end %>  
+      <%= link_to "最新動態", feeds_restaurants_path %></li>
+      
+      <% if @top_restaurants %>
+        <li role="presentation" class="active">    
+      <% else %>
+        <li role="presentation" class="nav_inactive">
+      <% end %>  
+      <%= link_to "熱門餐廳", ranking_restaurants_path %></li>
+        
+      <% if @users %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation" class="nav_inactive">
+      <% end %>  
+      <%= link_to "美食達人", users_path %></li>
+        
+      
+      <% if @category == nil && @restaurants %>
+        <li role="presentation" class="active">
+      <% else %>
+         <li role="presentation" class="nav_inactive">
+      <% end %>  
+      <%= link_to "全部餐廳", root_path %></li>  
+
+      <!-- restaurants index才有下拉式各類餐廳 -->
+      <% if @restaurants %>  
+        <li role="presentation" class="dropdown <%= "active" if @category %>">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <% if @category %>
+              <%= @category.name %>
+            <% else %>  
+              選擇分類
+            <% end %>  
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% @categories.each do |category| %>
+              <li role="presentation">
+                <%= link_to category.name, category_path(category) %>
+              </li>
+            <% end %> 
+          </ul>
+        </li>
+      <% end %>   
+    </ul>
+  </li>
+</li>    
