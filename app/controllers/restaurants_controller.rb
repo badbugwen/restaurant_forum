@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only:[:show, :dashboard, :favorite, :unfavorite, :like, :unlike]
 
   def index
-    @restaurants = Restaurant.page(params[:page]).per(9)
+    @restaurants = Restaurant.includes(:liked_users, :category).page(params[:page]).per(9)
     @categories = Category.order(created_at: :desc)
   end
   
@@ -11,15 +11,12 @@ class RestaurantsController < ApplicationController
   end
 
   def feeds
-    @recent_restaurants = Restaurant.order(created_at: :desc).limit(10)
-    @recent_comments = Comment.order(created_at: :desc).limit(10)
-  end
-
-  def dashboard
+    @recent_restaurants = Restaurant.includes(:category).order(created_at: :desc).limit(10)
+    @recent_comments = Comment.includes(:user, :restaurant).order(created_at: :desc).limit(10)
   end
 
   def ranking
-    @top_restaurants = Restaurant.order(favorites_count: :desc).limit(10)
+    @top_restaurants = Restaurant.where("favorites_count > '0'").includes(:favorited_users).order(favorites_count: :desc).limit(10)
   end
   
    # POST /restaurants/:id/favorite
