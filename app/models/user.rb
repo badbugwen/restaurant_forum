@@ -25,6 +25,10 @@ class User < ApplicationRecord
   has_many :followships, dependent: :destroy
   has_many :followings, through: :followships
 
+  # 自關聯的逆向方法:@user可以逆向追蹤follower(設定@user為following的users)
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
+
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin" 
