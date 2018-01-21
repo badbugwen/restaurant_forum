@@ -22,7 +22,8 @@
                 [未分類]
               <% end %>  
               </p>
-            <p><%= restaurant.description %></p>  
+            <p><%= restaurant.description %></p> 
+            <p class="text-right">created <%= time_ago_in_words(restaurant.created_at) %> ago</p>
           </li>
           <% end %>
         </ul>
@@ -39,7 +40,10 @@
           <li class="list-group-item">
             <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
             <p><%= comment.content %></p>
-            <p>by <%= link_to comment.user.name, user_path(comment.user) %></p>
+            <footer class="text-right">by <%= link_to comment.user.name, user_path(comment.user) %>
+              <cite title="Source Title"><%= time_ago_in_words(comment.created_at) %> ago</cite>
+            </footer>
+            </p>
           </li>
         <% end %>  
         </ul>
