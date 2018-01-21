@@ -1,10 +1,10 @@
-<!-- user's profie page -->
 <div class="container">
+  <!-- user's profie -->
   <div class="row ">
     <div class="col-md-12">
 
       <!-- user's image -->
-      <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 ">
+      <div class="col-xs-2 col-sm-3 ">
         <% if @user.avatar? %>
           <%= image_tag @user.avatar, width: '200px', class: "rounded img-responsive center-block img-circle" %>
         <% else %>
@@ -13,39 +13,116 @@
       </div>  
 
       <!-- user's data -->
-      <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+      <div class="col-xs-10 col-sm-7 ">
         <ul class="list-unstyled">
           <li><h1><%= @user.name %></h1></li>
           <li><%= @user.email %></li>
           <li><%= @user.intro if @user.intro %></li>
         </ul>
-
-        <!-- link to edit user's profile if himself/herself-->
-        <%= link_to 'Edit Profile', edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %>
+        <ul class="list-inline">
+          <li><%= @user.restaurants.size %>已評論餐廳</li>
+          <li><%= @user.favorited_restaurants.size %>收藏的餐廳</li>
+          <li><%= @user.followings.size %>追蹤對象</li>
+          <li><%= @user.followers.size %>粉絲</li>
+        </ul> 
+        <!-- edit user's profile or followship button-->
+        <%= render partial: "shared/followship", locals:{user: @user} %>
+        <%= link_to 'Edit Profile', edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %>   
       </div>
+
     </div>
   </div>  
-  <br>
-    <!-- commented restaurant list -->  
-  <div class="row"> 
-    <div class="panel panel-success">
-      <div class="panel-heading text-center">
-        <h3><%= @user.name %>評論過<%= @commented_restaurants.uniq.count %>間餐廳</h3>
-      </div>
-      <div class="panel-body">
-        <% @commented_restaurants.uniq.each do |restaurant| %>
-        <%= link_to restaurant_path(restaurant) do %>
-          <div class="my-restaurant">
-            <% if restaurant.image? %>
-              <%= image_tag restaurant.image, class: "img-rounded" %> 
-            <% else %>                  
-              <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
-            <% end %>  
-            <h4><%= restaurant.name %></h4>
-          </div>
-        <% end %>    
-        <% end %> 
+
+  <hr>
+  <div class="row">    
+    <div class="col-xs-2 col-sm-3">
+    
+      <!-- user's followings list -->
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">
+          <h3><%= @user.followings.size %>追蹤對象</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-unstyled">
+            <% @user.followings.each do |following| %>
+              <li>
+                <% if following.avatar? %> 
+                  <%= image_tag following.avatar, width: '50px', class: "rounded img-circle"%>
+                <% else %>
+                  <span class="glyphicon glyphicon-user"></span>
+                <% end %>
+                <%= link_to following.name, user_path(following) %>
+                <hr>
+              </li>
+            <% end %>
+          </ul>    
+        </div> 
       </div>  
+
+      <!-- user's followers list -->
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">
+          <h3><%= @user.followers.size %>粉絲</h3>
+        </div>
+        <div class="panel-body">  
+          <ul class="list-unstyled">
+            <% @user.followers.each do |follower| %>
+              <li>
+                <% if follower.avatar? %> 
+                  <%= image_tag follower.avatar, width: '50px', class: "rounded img-circle"%>
+                <% else %>
+                  <span class="glyphicon glyphicon-user"></span>
+                <% end %>
+                <%= link_to follower.name, user_path(follower) %>
+              </li>
+            <% end %>
+          </ul>  
+        </div>
+      </div>
     </div>  
-  </div>
-</div>    
+
+    <div class="col-xs-10 col-sm-8">
+      <!-- commented restaurants list -->  
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">
+          <h3><%= @commented_restaurants.uniq.count %>已評論餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <% @commented_restaurants.uniq.each do |restaurant| %>
+          <%= link_to restaurant_path(restaurant) do %>
+            <div class="my-restaurant">
+              <% if restaurant.image? %>
+                <%= image_tag restaurant.image, class: "img-rounded" %> 
+              <% else %>                  
+                <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+              <% end %>  
+              <h4><%= restaurant.name %></h4>
+            </div>
+          <% end %>    
+          <% end %> 
+        </div>  
+      </div>  
+
+      <!-- favorited restaurants list -->  
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">
+          <h3><%= @user.favorited_restaurants.size %>收藏的餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <% @user.favorited_restaurants.each do |restaurant| %>
+          <%= link_to restaurant_path(restaurant) do %>
+            <div class="my-restaurant">
+              <% if restaurant.image? %>
+                <%= image_tag restaurant.image, class: "img-rounded" %> 
+              <% else %>                  
+                <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+              <% end %>  
+              <h4><%= restaurant.name %></h4>
+            </div>
+          <% end %>    
+          <% end %> 
+        </div>  
+      </div> 
+    </div>
+  </div>      
+</div>   
