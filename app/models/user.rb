@@ -47,6 +47,12 @@ class User < ApplicationRecord
 
   #判斷該user是否已經加(user)朋友
   def friend?(user)
-    self.friends.include?(user)
-  end  
+    self.friends.include?(user) || self.inviters.include?(user)
+  end
+  
+  def all_friends
+    friends_all = self.friends + self.inviters
+    return friends_all.uniq
+  end
+
 end

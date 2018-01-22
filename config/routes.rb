@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :user, :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:index, :show, :edit, :update] do
-    collection do
-      get :friend_list  #show user's all friends and inviters
+
+    #show user's all friends and inviters
+    member do
+      get :friend_list
     end  
   end  
 
