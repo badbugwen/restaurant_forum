@@ -45,4 +45,8 @@ class User < ApplicationRecord
     self.followings.include?(user)      
   end    
 
+  #判斷該user是否已經加(user)朋友
+  def friend?(user)
+    self.friends.include?(user)
+  end  
 end
