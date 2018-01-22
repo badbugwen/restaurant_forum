@@ -11,7 +11,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.friendship.where(friend_id: params[:id])
+    @friendship = current_user.friendships.where(friend_id: params[:id])
     @friendship.destroy_all
     flash[:alert] = "已不再將#{User.find_by(id: params[:id]).name}視為好友!"
     redirect_back(fallback_location: root_path)

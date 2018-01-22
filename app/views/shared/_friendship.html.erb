@@ -1,0 +1,7 @@
+<% if user != current_user %>  
+  <% if current_user.friend?(user) %>
+    <%= link_to '<span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-remove"></span><span class="glyphicon glyphicon-user"></span>絕交'.html_safe, friendship_path(user), method: :delete, class: "btn btn-default active" %>
+  <% else %>
+    <%= link_to '<span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>交友'.html_safe, friendships_path(friend_id: user), method: :post, class: "btn btn-info active" %>
+  <% end %>
+<% end %>  

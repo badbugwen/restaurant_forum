@@ -25,8 +25,9 @@
           <li><%= @user.followings.size %>追蹤對象</li>
           <li><%= @user.followers.size %>粉絲</li>
         </ul> 
-        <!-- edit user's profile or followship button-->
+        <!-- edit user's profile or followship/friendship button-->
         <%= render partial: "shared/followship", locals:{user: @user} %>
+        <%= render partial: "shared/friendship", locals:{user: @user} %>
         <%= link_to 'Edit Profile', edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %>   
       </div>
 
@@ -36,7 +37,7 @@
   <hr>
   <div class="row">    
     <div class="col-xs-2 col-sm-3">
-    
+
       <!-- user's followings list -->
       <div class="panel panel-success">
         <div class="panel-heading text-center">
