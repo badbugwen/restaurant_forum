@@ -35,7 +35,7 @@
         <br>  
         <div class="form-group">
           <%= f.submit class: "btn btn-primary" %>
-          <%= link_to 'Cancel', user_path(@user), class: "btn btn-default" %>
+          <%= f.button 'cancel', type: :reset, class: "btn btn-default" %>
         </div>
       <% end %>
     </div>  
