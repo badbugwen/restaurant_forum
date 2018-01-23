@@ -18,12 +18,12 @@ class Restaurant < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
-  # 判斷是否有user收藏此餐廳
+  # 判斷(user)是否收藏此餐廳 instance method
   def is_favorited?(user)
     self.favorited_users.include?(user)
   end
 
-  # 判斷是否有user對此餐廳按讚
+  # 判斷(user)是否對此餐廳按讚 instance method
   def is_liked?(user)
     self.liked_users.include?(user)
   end

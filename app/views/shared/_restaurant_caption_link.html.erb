@@ -7,7 +7,7 @@
       <%=restaurant.favorites_count %> 
     </span>
   </h4>
-  <p class="card-text"><%= truncate(restaurant.description, length: 200) %></p>
+  <p><%= truncate(restaurant.description, length: 200) %></p>
   <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
   <%= render partial: "shared/like", locals: {restaurant: restaurant} %>
 </div>

@@ -10,12 +10,12 @@
     <div class="panel panel-default">
       <div class="panel-body">  
         <div class ="row">
-          <div class ="col-sm-5 col-md-2">
+          <div class ="col-sm-5 col-md-3">
             <!-- 若無照片則以glyphicon代替 -->
             <% if restaurant.image? %>
               <%= image_tag restaurant.image, height: '100px', class: "img-responsive" %>
             <% else %>
-              <img src="http://via.placeholder.com/350x235">
+              <img src="http://via.placeholder.com/350x235", height: '100px'>
             <% end %>
           </div>  
           <div class="col-sm-7 col-md-8">

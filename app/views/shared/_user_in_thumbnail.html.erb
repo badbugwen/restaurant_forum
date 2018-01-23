@@ -7,7 +7,8 @@
   <div class="caption text-center">
     <h3><%= link_to user.name, user_path(user) %></h3>
     <p>有<%= Followship.where(following_id: user).size %>個關注者</p>
-    <%= render partial: "shared/followship", locals: {user: user} %>
-    <%= render partial: "shared/friendship", locals: {user: user} %>
+    <p><%= render partial: "shared/followship", locals: {user: user} %>
+      <%= render partial: "shared/friendship", locals: {user: user} %>
+    </p>
   </div>
 </div>
