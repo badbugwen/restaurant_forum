@@ -1,0 +1,13 @@
+<div class="caption">
+  <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2> 
+  <h4>  
+    <span class="label label-success"><%= restaurant.category.name if restaurant.category %></span>
+    <span class="label label-default">
+      收藏數: 
+      <%=restaurant.favorites_count %> 
+    </span>
+  </h4>
+  <p class="card-text"><%= truncate(restaurant.description, length: 200) %></p>
+  <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+  <%= render partial: "shared/like", locals: {restaurant: restaurant} %>
+</div>

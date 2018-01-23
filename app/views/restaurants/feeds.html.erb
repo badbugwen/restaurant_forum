@@ -14,15 +14,7 @@
         <ul class="list-group">
         <% @recent_restaurants.each do |restaurant| %>
           <li class="panel-body list-group-item ">
-            <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-            <p> 
-              <% if restaurant.category %>
-                [<%= restaurant.category.name %>]
-              <% else %>
-                [未分類]
-              <% end %>  
-              </p>
-            <p><%= restaurant.description %></p> 
+            <%= render partial: "shared/restaurant_caption_link", locals: {restaurant: restaurant} %> 
             <p class="text-right">created <%= time_ago_in_words(restaurant.created_at) %> ago</p>
           </li>
           <% end %>
@@ -40,8 +32,8 @@
           <li class="list-group-item">
             <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
             <p><%= comment.content %></p>
-            <footer class="text-right">by <%= link_to comment.user.name, user_path(comment.user) %>
-              <cite title="Source Title"><%= time_ago_in_words(comment.created_at) %> ago</cite>
+            <footer class="text-right">by  <%= render partial: "shared/user_avatar_link", locals:{user: comment.user} %>
+              <cite title="Source Title"> <%= time_ago_in_words(comment.created_at) %> ago</cite>
             </footer>
             </p>
           </li>

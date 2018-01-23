@@ -24,11 +24,15 @@
           <li><%= @user.favorited_restaurants.size %>收藏的餐廳</li>
           <li><%= @user.followings.size %>追蹤對象</li>
           <li><%= @user.followers.size %>粉絲</li>
-        </ul> 
-        <!-- edit user's profile or followship/friendship button-->
-        <%= render partial: "shared/followship", locals:{user: @user} %>
-        <%= render partial: "shared/friendship", locals:{user: @user} %>
-        <%= link_to 'Edit Profile', edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %>   
+        </ul>  
+         
+        <!-- interaction and path buttons-->
+        <ul class="list-inline">
+          <li><%= link_to '<span class="glyphicon glyphicon-edit"></span> Edit Profile'.html_safe, edit_user_path(params[:id]), class: "btn btn-primary" if current_user == @user %></li>
+          <li><%= link_to '<span class="glyphicon glyphicon-th-list"></span> Friend List'.html_safe, friend_list_user_path(params[:id]), class: "btn btn-primary" %></li>
+          <li><%= render partial: "shared/followship", locals:{user: @user} %></li>
+          <li><%= render partial: "shared/friendship", locals:{user: @user} %></li>
+        </ul>
       </div>
 
     </div>
@@ -47,12 +51,7 @@
           <ul class="list-unstyled">
             <% @user.followings.each do |following| %>
               <li>
-                <% if following.avatar? %> 
-                  <%= image_tag following.avatar, width: '50px', class: "rounded img-circle"%>
-                <% else %>
-                  <span class="glyphicon glyphicon-user"></span>
-                <% end %>
-                <%= link_to following.name, user_path(following) %>
+                <%= render partial: "shared/user_avatar_link", locals:{user: following} %>
                 <hr>
               </li>
             <% end %>
@@ -69,12 +68,8 @@
           <ul class="list-unstyled">
             <% @user.followers.each do |follower| %>
               <li>
-                <% if follower.avatar? %> 
-                  <%= image_tag follower.avatar, width: '50px', class: "rounded img-circle"%>
-                <% else %>
-                  <span class="glyphicon glyphicon-user"></span>
-                <% end %>
-                <%= link_to follower.name, user_path(follower) %>
+                <%= render partial: "shared/user_avatar_link", locals:{user: follower} %>
+                <hr>
               </li>
             <% end %>
           </ul>  
@@ -90,16 +85,7 @@
         </div>
         <div class="panel-body">
           <% @commented_restaurants.uniq.each do |restaurant| %>
-          <%= link_to restaurant_path(restaurant) do %>
-            <div class="my-restaurant">
-              <% if restaurant.image? %>
-                <%= image_tag restaurant.image, class: "img-rounded" %> 
-              <% else %>                  
-                <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
-              <% end %>  
-              <h4><%= restaurant.name %></h4>
-            </div>
-          <% end %>    
+            <%= render partial: "shared/restaurant_image_link", locals:{restaurant: restaurant} %>
           <% end %> 
         </div>  
       </div>  
@@ -111,16 +97,7 @@
         </div>
         <div class="panel-body">
           <% @user.favorited_restaurants.each do |restaurant| %>
-          <%= link_to restaurant_path(restaurant) do %>
-            <div class="my-restaurant">
-              <% if restaurant.image? %>
-                <%= image_tag restaurant.image, class: "img-rounded" %> 
-              <% else %>                  
-                <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
-              <% end %>  
-              <h4><%= restaurant.name %></h4>
-            </div>
-          <% end %>    
+            <%= render partial: "shared/restaurant_image_link", locals:{restaurant: restaurant} %>
           <% end %> 
         </div>  
       </div> 

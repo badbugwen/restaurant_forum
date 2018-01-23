@@ -41,8 +41,7 @@
       <!-- comments display area -->
       <% @restaurant.comments.each do |comment| %>
         <div>
-          <%= image_tag comment.user.avatar, width: '50px', class: "rounded img-circle" if comment.user.avatar %>
-          <%= link_to comment.user.name, user_path(comment.user) %>
+          <%= render partial: "shared/user_avatar_link", locals:{user: comment.user} %>
         </div>
         <div>  
           <p><%= comment.content %></p>

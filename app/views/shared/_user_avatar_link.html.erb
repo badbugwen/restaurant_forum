@@ -1,0 +1,9 @@
+<%= link_to user_path(user) do %>
+  <% if user.avatar? %> 
+    <%= image_tag user.avatar, width: '50px', class: "rounded img-circle"%>
+  <% else %>
+    <span class="glyphicon glyphicon-user"></span>
+  <% end %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+              

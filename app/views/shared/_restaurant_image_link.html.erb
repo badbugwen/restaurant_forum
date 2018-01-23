@@ -1,0 +1,10 @@
+<%= link_to restaurant_path(restaurant) do %>
+  <div class="my-restaurant">
+    <% if restaurant.image? %>
+      <%= image_tag restaurant.image, class: "img-rounded" %> 
+    <% else %>                  
+      <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+    <% end %>  
+    <h4><%= restaurant.name %></h4>
+  </div>
+<% end %> 
