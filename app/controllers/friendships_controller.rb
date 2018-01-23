@@ -2,8 +2,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id])
     if @friendship.save
-      flash[:notice] ="您已將#{User.find_by(id: params[:friend_id]).name}視為好友!"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path), notice: "您已將#{User.find_by(id: params[:friend_id]).name}視為好友!"
     else
       flash[:alert] = @friendship.errors.full_messages.to_sentence
       redirect_back(fallback_location: root_path)

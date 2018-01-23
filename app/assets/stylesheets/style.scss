@@ -28,6 +28,7 @@ body {
  }
 /* nav bar 的非點擊連結 */
  .nav_inactive {
+  background:rgba(250,250,250,0.5);
   border: 1px solid #337ab7;
   border-radius: 4px;
   margin-right: 2px;
@@ -64,4 +65,8 @@ body {
 /* background opacity change without text effect */
 .panel-success {
   background:rgba(0,0,0,0.1)
+}
+
+.opacity_white {
+  background:rgba(250,250,250,0.5)
 }

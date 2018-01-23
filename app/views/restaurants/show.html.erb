@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row  opacity_white">
     <div class="col-md-12">
       <!-- restaurant info -->
      <h1><%= @restaurant.name %></h1> 
@@ -53,7 +53,7 @@
         <hr>
       <% end %>
       <hr>
-      <!-- New comment form -->
+      <!-- New comment form -->     
       <%= form_for [@restaurant, @comment] do |f| %>
         <div class="form_group">
           <%= f.label :content, "評論此餐廳" %>

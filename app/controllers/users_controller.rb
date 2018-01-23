@@ -13,15 +13,12 @@ class UsersController < ApplicationController
     if @user == current_user
       # only userself can update profile in right format
       if @user.update(user_params)
-        redirect_to user_path(params[:id])
-        flash[:notice] = "User's profile was successfully updated"
+        redirect_to user_path(params[:id]), notice: "User's profile was successfully updated"
       else
-        flash.now[:alert] = "User's profile was failed to update"
         render :edit
       end
     else
-        flash[:alert] = "You can not edit other user's profile!"
-        redirect_to user_path(params[:id])
+        redirect_to user_path(params[:id]), alert: "You can not edit other user's profile!"
     end    
   end
 
