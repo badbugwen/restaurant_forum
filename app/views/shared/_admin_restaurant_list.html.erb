@@ -1,0 +1,89 @@
+<div class="container">
+  <!-- resaturant/category page shift -->
+  <div class="btn-group" role="group" aria-label="admin button">
+    <button type="button" class="btn btn-default">
+      <%= link_to 'Categories', admin_categories_path%>
+    </button>
+    <button type="button" class="btn btn-default">
+      <%= link_to 'All Restaurant', admin_restaurants_path %>
+    </button>
+    <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      依分類管理餐廳
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+            <% @categories.each do |category| %>
+              <li role="presentation">
+                <%= link_to category.name, admin_category_path(category) %>
+              </li>
+            <% end %> 
+          </ul>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h3 class="text-center">餐廳一覽表  </h3>
+      <%= link_to '<span class="glyphicon glyphicon-plus">New Restaurant</span>'.html_safe, new_admin_restaurant_path, class:"btn btn-primary pull-right" %>
+      <!-- restaurant list table -->
+      <table class="table table-hover"> 
+        <thead>
+          <div class="row">
+            <tr class="bg-primary">
+              <td class="col-md-3 text-center">餐廳照片</td> 
+              <td class="col-md-4">餐廳訊息</td>           
+              <td class="col-md-1">檢視</td>
+              <td class="col-md-1">編輯</td>
+              <td class="col-md-1">刪除</td>
+            </tr>
+          </div>
+        </thead>
+
+        <tbody>      
+         <% @restaurants.each do |restaurant| %>
+          <tr>
+            <th scope="row" class="col-md-3"> 
+              <% if restaurant.image? %>
+                <%= image_tag restaurant.image, width: '150px', class: "img-responsive center-block" %> 
+              <% else %>
+                <h1 class="text-center"><span class="glyphicon glyphicon-picture"></span></h1>
+              <% end %>
+            </th>
+            <div class="col-md-4">
+              <td>
+                餐廳名稱: <%=restaurant.name %><br>
+                餐廳類型: 
+                  <% if restaurant.category %>
+                    <%=restaurant.category.name%>
+                  <% else %>
+                    未分類
+                  <% end %>  
+                  <br>
+                餐廳電話: <%=restaurant.tel %><br>
+                餐廳地址: <%=restaurant.address %><br>
+                營業時間: <%=restaurant.opening_hours %>
+              </td>
+            </div>
+            <div class="col-md-1">
+              <td><%= link_to '<span class="glyphicon glyphicon-search"></span>'.html_safe, admin_restaurant_path(restaurant), class: "text-center" %>    
+              </td>
+            </div>
+            <div class="col-md-1">
+              <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_admin_restaurant_path(restaurant), class: "text-center" %>    
+              </td>
+            </div>
+            <div class="col-md-1">
+              <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, admin_restaurant_path(restaurant), method: :delete, data:{ confirm: "確定刪除此餐廳?" }, class: "text-center" %>    
+              </td>
+            </div>
+          <% end %>
+        </tbody>
+      </table> 
+
+      <div div class="text-center">
+        <%= paginate @restaurants %>
+      </div>
+    </div>
+  </div>
+</div>

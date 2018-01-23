@@ -3,6 +3,7 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.page(params[:page]).per(10)
+    @categories = Category.order(created_at: :desc)
   end
 
   def new
@@ -12,28 +13,23 @@ before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-      flash[:notice] = "Restaurant was successfully created"
-      redirect_to admin_restaurants_path
+      redirect_to admin_restaurants_path, notice: "Restaurant was successfully created"
     else
-      flash.now[:alert] = "Restaurant was dailed to create"
-      render :new
+      render :new, alert: "Restaurant was dailed to create"
     end  
   end
  
   def update
     if @restaurant.update(restaurant_params)
-      redirect_to admin_restaurants_path(@restaurant)
-      flash[:notice] = "Restaurant was successfully updated"
+      redirect_to admin_restaurants_path(@restaurant), notice: "Restaurant was successfully updated"
     else
-      flash.now[:alert] = "Restaurant was failed to update"
-      render :edit
+      render :edit, alert: "Restaurant was failed to update"
     end  
   end 
 
   def destroy
     @restaurant.destroy
-    redirect_to admin_restaurants_path
-    flash[:alert] = "餐廳已刪除"
+    redirect_to admin_restaurants_path, alert: "餐廳已刪除"
   end 
     
 private  

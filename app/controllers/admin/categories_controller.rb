@@ -11,11 +11,16 @@ class Admin::CategoriesController < Admin::BaseController
     end  
   end
 
+  def show
+    @categories = Category.all
+    @category = Category.find(params[:id])
+    @restaurants = @category.restaurants.page(params[:page]).per(10)
+  end
+
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to admin_categories_path
-      flash[:notice] = "New category was successfully created!"
+      redirect_to admin_categories_path, notice: "New category was successfully created!"
     else 
       # set_categories
       render :index
@@ -24,8 +29,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if @category.update(category_params)
-      redirect_to admin_categories_path
-      flash[:notice] = "Category was successfully updated!" 
+      redirect_to admin_categories_path, notice: "Category was successfully updated!" 
     else 
       # set_categories
       render :index
@@ -34,8 +38,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     @category.destroy
-    redirect_to admin_categories_path
-    flash[:alert] = "分類已刪除"
+    redirect_to admin_categories_path, alert: "分類已刪除"
   end 
 
   private
