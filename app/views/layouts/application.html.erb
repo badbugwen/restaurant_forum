@@ -3,7 +3,7 @@
 
     <head>
       <title>RestaurantForum</title>
-
+      <meta name= 'viewport' content= 'width=devise-width, initial-scale=1.0'>
       <!-- 網頁圖標favicon.ico，可顯示icon於標題列 -->
       <%= favicon_link_tag 'favicon.ico' %>
       <%= csrf_meta_tags %>
@@ -13,54 +13,50 @@
     </head>
 
     <body>
-
       <!-- 導覽列 -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar-fixed-top navbar-default">
         <div class="container-fluid">
-
         <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
+            <%= image_tag "brand.png", class: "navbar-brand" %>
+            <%=link_to "親子餐廳評論網", root_path, class: "navbar-brand" %>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
-            <!-- nav brand,尚未成功加入nav brand image與文字共同顯示 -->
-            <%=link_to "Kids friendly 親子餐廳評論網", root_path, class: "navbar-brand" %>
-          </div>
-   
+          </div>  
+     
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="pull-right text-right nav navbar-nav">
-
-              <!-- 當使用者登入/未登入，顯示不同選項 -->
-              <% if current_user %> 
-
-                <!-- 當使用者為admin，顯示後臺連結 -->
-                <li>  
-                  <%= link_to '<span class="glyphicon glyphicon-list-alt"></span>'.html_safe,admin_restaurants_path if current_user.admin? %>
-                </li> 
-                <li><p class="navbar-text">Hi, 
-                  <% if current_user.name %>
-                    <%= current_user.name %>
-                  <% else %>
-                    <%= current_user.email.split("@").first %> 
-                  <% end %>  
-                </p></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-user"></span>'.html_safe, user_path(id: current_user.id) %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span>'.html_safe,destroy_user_session_path, method: :delete %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, edit_user_registration_path(id: current_user.id) %></li>
-
-              <!-- 當使用者未登入，顯示註冊&登入 -->  
-              <% else %>
-                <li><%= link_to '註冊', new_user_registration_path %></li>
-                <li><%= link_to '登入', new_user_session_path %></li>
-              <% end %>
-            </ul>
+            <!--若登入的user無name則顯示email -->
+           <% if current_user %>  
+              <p class="navbar-text">
+                Hi, 
+                <% if current_user.name %>
+                  <%= current_user.name %>
+                <% else %>
+                  <%= current_user.email.split("@").first %> 
+                <% end %>
+              </p>
+            <% end %>
+            <ul class="nav navbar-nav navbar-right">
+             <!-- 當使用者登入/未登入，顯示不同選項 -->  
+            <% if current_user %>           
+              <!-- 當使用者為admin，顯示後臺連結 -->
+              <li><%= link_to '<span class="glyphicon glyphicon-cutlery"></span> 後台管理'.html_safe,admin_restaurants_path if current_user.admin? %></li>
+              <li><%= link_to '<span class="glyphicon glyphicon-user"></span>   會員資料'.html_safe, user_path(id: current_user.id) %></li>
+              <li><%= link_to '<span class="glyphicon glyphicon-cog"></span>  修改密碼'.html_safe, edit_user_registration_path(id: current_user.id) %></li>
+              <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> 登出'.html_safe,destroy_user_session_path, method: :delete %></li>
+            <!-- 當使用者未登入，顯示註冊&登入 -->  
+          <% else %>
+              <li><%= link_to '註冊', new_user_registration_path %></li>
+              <li><%= link_to '登入', new_user_session_path %></li>
+          <% end %>
+            </ul>          
           </div>
-        </div>
+        </div>  
       </nav>  
 
       <!-- 用flash提示action訊息 -->
