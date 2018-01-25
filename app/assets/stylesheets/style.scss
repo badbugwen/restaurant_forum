@@ -15,6 +15,12 @@ body {
   margin: 0 auto;
 }
 
+/* background opacity */
+.opacity_white {
+  background:rgba(250,250,250,0.8)
+}
+
+
 .navbar-collapse {
   position: fixed;
   right: 15px;
@@ -46,6 +52,7 @@ body {
   margin: 10px auto;
 }
 
+
 /* commented restaurants in user's profile */
 
 .my-restaurant {
@@ -68,14 +75,6 @@ body {
   text-decoration: none;
   }
 
-/* background opacity change without text effect */
-.panel-success {
-  background:rgba(0,0,0,0.1)
-}
-
-.opacity_white {
-  background:rgba(250,250,250,0.5)
-}
 
 @media screen and (min-width: 768px)  {
   

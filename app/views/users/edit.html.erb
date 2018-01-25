@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6" >
+  <!--當前用戶為本人顯示編輯資料 -->
+  <% if @user == current_user %>
+    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" >
       <h1>個人資訊編輯:</h1>
 
       <!-- 錯誤提示:名稱不可空白  -->
@@ -38,6 +40,16 @@
           <%= f.button 'cancel', type: :reset, class: "btn btn-default" %>
         </div>
       <% end %>
-    </div>  
+    </div>
+  <% else %>
+  <h2 class="text-center">
+    <span class="glyphicon glyphicon-exclamation-sign"></span>
+    個人資料僅限本人編輯
+  </h2>  
+    <ul class="list-inline text-center">
+      <li><%= link_to '返回前頁', :back, class: "btn btn-default"%></li>
+      <li><%= link_to "首頁", root_path, class: "btn btn-default" %></li>
+    </ul>
+  <% end %>  
   </div>
 </div> 

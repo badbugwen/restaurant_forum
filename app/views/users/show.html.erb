@@ -20,10 +20,11 @@
           <li><%= @user.intro if @user.intro %></li>
         </ul>
         <ul class="list-inline">
-          <li><%= @user.restaurants.size %>已評論餐廳</li>
+          <li><%= @user.restaurants.uniq.size %>已評論餐廳</li>
           <li><%= @user.favorited_restaurants.size %>收藏的餐廳</li>
           <li><%= @user.followings.size %>追蹤對象</li>
           <li><%= @user.followers.size %>粉絲</li>
+          <li><%= @user.all_friends.size %>朋友</li>
         </ul>  
          
         <!-- interaction and path buttons-->
@@ -43,7 +44,7 @@
     <div class="col-xs-2 col-sm-3">
 
       <!-- user's followings list -->
-      <div class="panel panel-success">
+      <div class="panel panel-success opacity_white">
         <div class="panel-heading text-center">
           <h3><%= @user.followings.size %>追蹤對象</h3>
         </div>
@@ -60,7 +61,7 @@
       </div>  
 
       <!-- user's followers list -->
-      <div class="panel panel-success">
+      <div class="panel panel-success opacity_white">
         <div class="panel-heading text-center">
           <h3><%= @user.followers.size %>粉絲</h3>
         </div>
@@ -79,7 +80,7 @@
 
     <div class="col-xs-10 col-sm-8">
       <!-- commented restaurants list -->  
-      <div class="panel panel-success">
+      <div class="panel panel-success opacity_white">
         <div class="panel-heading text-center">
           <h3><%= @commented_restaurants.uniq.count %>已評論餐廳</h3>
         </div>
@@ -91,7 +92,7 @@
       </div>  
 
       <!-- favorited restaurants list -->  
-      <div class="panel panel-success">
+      <div class="panel panel-success opacity_white">
         <div class="panel-heading text-center">
           <h3><%= @user.favorited_restaurants.size %>收藏的餐廳</h3>
         </div>
