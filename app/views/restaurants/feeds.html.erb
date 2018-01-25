@@ -13,7 +13,7 @@
         <!-- List group 列出最新10個加入餐廳-->
         <ul class="list-group">
         <% @recent_restaurants.each do |restaurant| %>
-          <li class="panel-body list-group-item ">
+          <li class="panel-body list-group-item">
             <%= render partial: "shared/restaurant_caption_link", locals: {restaurant: restaurant} %> 
             <p class="text-right">created <%= time_ago_in_words(restaurant.created_at) %> ago</p>
           </li>
