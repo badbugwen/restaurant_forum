@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only:[:show, :dashboard, :favorite, :unfavorite, :like, :unlike]
 
   def index
-    @restaurants = Restaurant.includes(:liked_users, :category).page(params[:page]).per(9)
+    @restaurants = Restaurant.includes(:liked_users, :category).page(params[:page]).per(12)
     @categories = Category.order(created_at: :desc)
   end
   
