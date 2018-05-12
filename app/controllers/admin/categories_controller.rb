@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: [:update, :destroy]
-   before_action :set_categories, only: [:index, :create, :update]
+  before_action :set_categories, only: [:index, :create, :update]
 
   def index
     # set_categories

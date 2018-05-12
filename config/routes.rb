@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # use devise gem for user login
-  devise_for :user, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:index, :show, :edit, :update] do
 
