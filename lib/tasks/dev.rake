@@ -47,6 +47,18 @@ namespace :dev do
     end
     puts "now you have #{Followship.count} followship"
 
+    Friendship.destroy_all
+    puts "creating fake friendship..." 
+    User.all.each do |u|
+      @users = User.where.not(id: u.id).shuffle
+      5.times do
+        u.friendships.create!(
+        friend: @users.pop,
+        )      
+      end     
+    end
+    puts "now you have #{Friendship.count} friendship"
+
     500.times do |i|
       Favorite.create!(
         user_id: User.all.sample.id,
