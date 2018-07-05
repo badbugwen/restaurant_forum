@@ -18,18 +18,23 @@ namespace :dev do
 
     users = User.all
     users.each do |user|
-          if !user.admin? && user.name != "User"
-            user.destroy
-          end
-        end
+      if !user.admin? && user.name != "User"
+        user.destroy
+      end
+    end
+    
+    url = "https://uinames.com/api/?ext&region=england"
+    
+    20.times do
+      response = RestClient.get(url)
+      data = JSON.parse(response.body)
 
-    20.times do |i|
-      User.create!(
-        email: FFaker::Internet.email,
+      user= User.create!(
+        email: data["email"],
         password: "123456",
-        name: FFaker::Name.name,
+        name: data["name"],
         intro: FFaker::Lorem.paragraph,
-        avatar: File.open(Rails.root.join("lib/assets/images/#{rand(1..2)}.jpg"))
+        remote_avatar_url: data["photo"]
       ) 
     end  
     puts "have created fake users"
